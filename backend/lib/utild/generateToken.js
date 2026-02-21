@@ -11,6 +11,6 @@ export const genearateTokenAndSetCookie = (userId,res) =>{
         sameSite:"none",
         // secure:process.env.NODE_ENV !== "development",
         secure:true,
-        domain: "localhost" //added later 
+        // domain: "localhost" //added later 
     });
 }
