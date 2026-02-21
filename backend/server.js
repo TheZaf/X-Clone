@@ -5,12 +5,14 @@ import userRoutes from "./routes/user.route.js"
 import postRoutes from "./routes/post.route.js"
 import notificationRoutes from "./routes/notification.route.js"
 
-import { v2 } from "cloudinary"
+import path from "path"
 import dotenv from "dotenv"
 import connectDB from "./db/db.js"
 import cookieParser from "cookie-parser"
 
 const app = express()
+const PORT = process.env.PORT || 5000;
+const __dirname = path.resolve();// Enable CORS for all routes
 app.use(cors({
   origin: "http://localhost:8000", // your React app's port
   credentials: true,               // allow cookies/auth if needed
@@ -34,11 +36,16 @@ app.use("/api/user/",userRoutes)
 app.use("/api/posts/",postRoutes)
 app.use("/api/notifications/",notificationRoutes)
 
-app.get("/",(req,res)=>{
-    res.send("Server is Ready!...")
-})
 
-app.listen(5000,()=>{
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname,"/frontend/dist")));
+
+    app.get("*",(req,res)=>{
+        res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"));
+    })
+}
+
+app.listen(PORT,()=>{
     connectDB()
-    console.log("server is running on http://localhost:5000")
+    console.log("server is running on port",PORT);
 })
