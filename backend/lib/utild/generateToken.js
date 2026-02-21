@@ -8,9 +8,9 @@ export const genearateTokenAndSetCookie = (userId,res) =>{
     res.cookie("jwt",token,{
         httpOnly:true,//prevent xxs attack cross site scripting attacks
         maxAge:7*24*60*60*1000,
-        sameSite:"Lax",//CRSF attack cross site request forgery attacks
+        sameSite:"none",
         // secure:process.env.NODE_ENV !== "development",
-        secure:false,
+        secure:true,
         domain: "localhost" //added later 
     });
 }
