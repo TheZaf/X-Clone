@@ -73,5 +73,3 @@ Disclaimer
 This project is developed for educational and portfolio purposes only.
 It is not affiliated with, endorsed by, or connected to X (formerly Twitter).
 The goal of this project is to demonstrate full-stack development skills and modern web application architecture.
-
-Just tell me which one you need 👌
